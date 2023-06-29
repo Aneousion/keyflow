@@ -1,0 +1,23 @@
+[build-system]
+requires = ['setuptools>=61.0', 'keyboard', 'colorama']
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keyflow"
+version = "0.0.1"
+authors = [
+  { name="Aneousion", email="sanusirry@gmail.com" },
+]
+description = 'A small python library to simulate typing in the console and custom text formatting.'
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/aneousion/keyflow"
+"Bug Tracker" = "https://github.com/aneousion/keyflow/issues"
+
