@@ -78,8 +78,7 @@ kfinput(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=T
 KeyFlow is released under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute this library for both commercial and non-commercial purposes. Please see the [LICENSE](https://github.com/aneousion/keyflow/LICENSE) file for more details.
 
 ## GitHub Repository
-
-The source code for KeyFlow is hosted on GitHub. You can find the repository at [https://github.com/aneousion/keyflow](https://github.com/aneousion/keyflow). Feel free to explore the repository, submit issues, and contribute to the project.
+Feel free to explore the repository, submit issues, and contribute to the project.
 
 To clone the repository, run the following command:
 
