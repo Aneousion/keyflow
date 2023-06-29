@@ -21,14 +21,56 @@ pip install keyflow
 ```
 ## Usage
 
-Here's an example of how to use KeyFlow to print formatted text and receive user input:
-```python
-from keyflow import kfprint, kfinput
+### kfprint
 
-kfprint("Hello, World!", fore_color="red", back_color="yellow", underline=True, bold=True)
-name = kfinput('What is your name?\n', fore_color='green', underline=True)
-kfprint(f'Thanks for using KeyFlow, {name}.')
+The `kfprint` function prints text with a simulated typing effect and supports custom foreground and background colors.
+
+```python
+from keyflow import kfprint
+
+kfprint(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=True, error=0.2, underline=False, bold=False, italics=False)
 ```
+
+#### Parameters
+
+- `text` (str): The text to be printed.
+- `speed` (float, optional): The typing speed in seconds per character. Default is 0.2.
+- `retype` (str, optional): Text to be retyped after printing. Default is None.
+- `fore_color` (str, optional): The foreground color code or name to apply to the text. Default is None.
+- `back_color` (str, optional): The background color code or name to apply to the text. Default is None.
+- `typing` (bool, optional): Whether to simulate typing effect. Default is True.
+- `error` (float, optional): The probability of making an error while typing. Default is 0.2.
+- `underline` (bool, optional): Whether to underline the text. Default is False.
+- `bold` (bool, optional): Whether to bold the text. Default is False.
+- `italics` (bool, optional): Whether to italicize the text. Default is False.
+
+### kfinput
+
+The `kfinput` function displays text with a simulated typing effect, waits for user input, and returns the entered value.
+
+```python
+from keyflow import kfinput
+
+kfinput(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=True, use_pyip=None, pyip_params={}, error=0.2, underline=False, bold=False, italics=False)
+```
+
+#### Parameters
+
+- `text` (str): The text to be displayed as a prompt.
+- `speed` (float, optional): The typing speed in seconds per character. Default is 0.2.
+- `retype` (str, optional): Text to be retyped after printing. Default is None.
+- `fore_color` (str, optional): The foreground color code or name to apply to the text. Default is None.
+- `back_color` (str, optional): The background color code or name to apply to the text. Default is None.
+- `typing` (bool, optional): Whether to simulate typing effect. Default is True.
+- `use_pyip` (callable, optional): A function to use for input. Default is None.
+- `pyip_params` (dict, optional): Additional parameters to pass to the `use_pyip` function. Default is an empty dictionary.
+- `error` (float, optional): The probability of making an error while typing. Default is 0.2.
+- `underline` (bool, optional): Whether to underline the text. Default is False.
+- `bold` (bool, optional): Whether to bold the text. Default is False.
+- `italics` (bool, optional): Whether to italicize the text. Default is False.
+
+
+# Note: When typing, you can press the spacebar to pause and resume the typing animation.
 
 
 ## License
@@ -42,5 +84,5 @@ The source code for KeyFlow is hosted on GitHub. You can find the repository at 
 To clone the repository, run the following command:
 
 ```bash
-git clone https://github.com/aneousion/keyflow.git
+git clone https://github.com/aneousion/keyflow
 ```
