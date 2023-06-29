@@ -26,7 +26,7 @@ pip install keyflow
 The `kfprint` function prints text with a simulated typing effect and supports custom foreground and background colors.
 
 ```python
-from keyflow.keyflow import kfprint
+from keyflow import kfprint
 
 kfprint(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=True, error=0.2, underline=False, bold=False, italics=False)
 ```
@@ -49,7 +49,7 @@ kfprint(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=T
 The `kfinput` function displays text with a simulated typing effect, waits for user input, and returns the entered value.
 
 ```python
-from keyflow.keyflow import kfinput
+from keyflow import kfinput
 
 kfinput(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=True, use_pyip=None, pyip_params={}, error=0.2, underline=False, bold=False, italics=False)
 ```
