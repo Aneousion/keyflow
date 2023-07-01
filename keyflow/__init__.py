@@ -90,7 +90,7 @@ def kfprint(text: str, speed: float = 0.2, retype: str = None, fore_color: str =
 
     keyboard.on_press_key(key='Space', callback=pause_resume_typing)
 
-    for char in text:
+    for char in text.rstrip('\n'):
         if random.random() < error:
             mistyped_char = random.choice(text.replace('\n', ''))
             print(mistyped_char, end='', flush=True)
@@ -120,6 +120,12 @@ def kfprint(text: str, speed: float = 0.2, retype: str = None, fore_color: str =
         kfprint(text=retype, speed=speed, fore_color=fore_color, back_color=back_color,
                 error=error, underline=underline, bold=bold, italics=italics)
         return
+    for i in reversed(text):
+        if i == '\n':
+            print()
+        else:
+            break
+    
    
 
 
