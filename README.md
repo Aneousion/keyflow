@@ -69,6 +69,18 @@ kfinput(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=T
 - `bold` (bool, optional): Whether to bold the text. Default is False.
 - `italics` (bool, optional): Whether to italicize the text. Default is False.
 
+# [Example](https://github.com/aneousion/keyflow/keyflow/example.py)
+```python
+from keyflow import kfprint, kfinput
+
+kfprint('Hello, world!', retype='Welcome to KeyFlow!', speed=0.3, fore_color='blue', back_color='white')
+name = kfinput('\nEnter your name: ', italics=True, fore_color='yellow')
+kfprint(f'Thanks for using KeyFlow, {name}', retype='GoodBye!', fore_color='red')
+```
+
+## Result:
+![](./keyflow/example.gif)
+
 
 # Note: When typing, you can press the spacebar to pause and resume the typing animation.
 
