@@ -12,7 +12,9 @@ class KeyFlowException(Exception):
     pass
 
 
-def _print_formatted_text(underline=False, bold=False, italics=False, fore_color: str = None, back_color: str = None):
+def _print_formatted_text(underline=False, bold=False, italics=False, fore_color: str = None, back_color: str = None, highlight: str = None):
+    if highlight:
+        return
     if underline:
         print('\033[4m', end='', flush=True)
     if bold:
@@ -26,7 +28,7 @@ def _print_formatted_text(underline=False, bold=False, italics=False, fore_color
 
 
 
-def kfprint(text: str, speed: float = 0.2, retype: str = None, fore_color: str = None, back_color: str = None, typing: bool = True, error: float = 0.2, underline: bool = False, bold: bool = False, italics: bool = False):
+def kfprint(text: str, speed: float = 0.2, retype: str = None, fore_color: str = None, back_color: str = None, highlight: str = None, typing: bool = True, error: float = 0.2, underline: bool = False, bold: bool = False, italics: bool = False):
     """
     Prints the text with a simulated typing effect and supports custom foreground and background colors.
 
@@ -42,6 +44,8 @@ def kfprint(text: str, speed: float = 0.2, retype: str = None, fore_color: str =
 
         `back_color` (str, optional): The background color code or name to apply to the text. Default is None.
 
+        `highlight` (str, optional): Text to be highlighted with the `fore_color` and `back_color`, works only when typing is set to false. Default is None.
+        
         `typing` (bool, optional): Whether to simulate typing effect. Default is True.
 
         `error` (float, optional): The probability of making an error while typing. Default is 0.2, that is, a 20% chance of making a mistake.
@@ -66,6 +70,8 @@ def kfprint(text: str, speed: float = 0.2, retype: str = None, fore_color: str =
         raise KeyFlowException("The 'fore_color' parameter must be a string")
     if not isinstance(back_color, (str, type(None))):
         raise KeyFlowException("The 'back_color' parameter must be a string")
+    if not isinstance(highlight, (str, type(None))):
+        raise KeyFlowException("The 'highlight' parameter must be a string")
     if not isinstance(typing, bool):
         raise KeyFlowException("The 'typing' parameter must be a boolean")
     if not isinstance(error, float):
@@ -78,10 +84,14 @@ def kfprint(text: str, speed: float = 0.2, retype: str = None, fore_color: str =
         raise KeyFlowException("The 'bold' parameter must be a boolean")
 
     if not typing:
-        _print_formatted_text(underline=underline, bold=bold, italics=italics, fore_color=fore_color, back_color=back_color)
-        print(text, end='', flush=True)
+        _print_formatted_text(underline=underline, bold=bold, italics=italics, fore_color=fore_color, back_color=back_color, highlight=highlight)
+        if highlight:
+            print(text.replace(highlight, f'{Fore.__dict__.get(fore_color.upper(), Fore.RESET)}{Back.__dict__.get(back_color.upper(), Back.RESET)}{highlight}{Style.RESET_ALL}'), end='', flush=True)
+        else:
+            print(text, end='', flush=True)
         print(Style.RESET_ALL, end='', flush=True)
         return
+    
     stop_typing = False
 
     def pause_resume_typing(event):
@@ -144,7 +154,7 @@ def _blinking_cursor_animation():
     keyboard.unhook_all()
 
 
-def kfinput(text: str, speed: float = 0.2, retype: str = None, fore_color: str = None, back_color: str = None, typing: bool = True, use_pyip = None, pyip_params: dict = {}, error: float = 0.2, underline: bool = False, bold: bool = False, italics: bool = False):
+def kfinput(text: str, speed: float = 0.2, retype: str = None, fore_color: str = None, back_color: str = None, highlight: str = None, typing: bool = True, use_pyip = None, pyip_params: dict = {}, error: float = 0.2, underline: bool = False, bold: bool = False, italics: bool = False):
     """
     Displays text with a simulated typing effect and supports custom foreground and background colors.
     Waits for user input and returns the entered value.
@@ -160,6 +170,8 @@ def kfinput(text: str, speed: float = 0.2, retype: str = None, fore_color: str =
         `fore_color` (str, optional): The foreground color code or name to apply to the text. Default is None.
 
         `back_color` (str, optional): The background color code or name to apply to the text. Default is None.
+
+        `highlight` (str, optional): Text to be highlighted with the `fore_color` and `back_color`, works only when typing is set to false. Default is None.
 
         `typing` (bool, optional): Whether to simulate typing effect. Default is True.
 
@@ -193,7 +205,7 @@ def kfinput(text: str, speed: float = 0.2, retype: str = None, fore_color: str =
         del pyip_params['prompt']
 
     kfprint(text, speed=speed, retype=retype, fore_color=fore_color,
-            back_color=back_color, typing=typing, error=error, underline=underline, italics=italics, bold=bold)
+            back_color=back_color, typing=typing, error=error, underline=underline, italics=italics, bold=bold, highlight=highlight)
     _blinking_cursor_animation()
     try:
         if use_pyip != None:
