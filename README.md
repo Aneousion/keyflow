@@ -38,6 +38,7 @@ kfprint(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=T
 - `retype` (str, optional): Text to be retyped after printing. Default is None.
 - `fore_color` (str, optional): The foreground color code or name to apply to the text. Default is None.
 - `back_color` (str, optional): The background color code or name to apply to the text. Default is None.
+- `highlight` (str, optional): Text to be highlighted with the `fore_color` and `back_color`, works only when typing is set to false. Default is None.
 - `typing` (bool, optional): Whether to simulate typing effect. Default is True.
 - `error` (float, optional): The probability of making an error while typing. Default is 0.2.
 - `underline` (bool, optional): Whether to underline the text. Default is False.
@@ -61,6 +62,7 @@ kfinput(text, speed=0.2, retype=None, fore_color=None, back_color=None, typing=T
 - `retype` (str, optional): Text to be retyped after printing. Default is None.
 - `fore_color` (str, optional): The foreground color code or name to apply to the text. Default is None.
 - `back_color` (str, optional): The background color code or name to apply to the text. Default is None.
+- `highlight` (str, optional): Text to be highlighted with the `fore_color` and `back_color`, works only when typing is set to false. Default is None.
 - `typing` (bool, optional): Whether to simulate typing effect. Default is True.
 - `use_pyip` (callable, optional): A [pyinputplus](https://github.com/asweigart/pyinputplus) function to use for input. Default is None.
 - `pyip_params` (dict, optional): Additional parameters to pass to the `use_pyip` function. Default is an empty dictionary.
